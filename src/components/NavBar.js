@@ -1,8 +1,22 @@
+/// IMPORTS ///
+
+// React
 import React from "react";
-import { Navbar, Container, Nav } from "react-bootstrap";
-import logo from "../assets/logo.png";
-import styles from "../styles/NavBar.module.css";
 import { NavLink } from "react-router-dom";
+
+// CSS
+import styles from "../styles/NavBar.module.css";
+
+// Assets
+import logo from "../assets/logo.png";
+
+// Bootstrap Components
+import { Navbar, Container, Nav } from "react-bootstrap";
+import {House } from "react-bootstrap-icons";
+import { BoxArrowInLeft } from "react-bootstrap-icons";
+import { BoxArrowInRight } from "react-bootstrap-icons";
+import { PersonPlusFill } from "react-bootstrap-icons";
+
 
 const NavBar = () => {
   return (
@@ -14,26 +28,29 @@ const NavBar = () => {
           </Navbar.Brand>
         </NavLink>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
+        <Navbar.Collapse id="basic-navbar-nav" className="pt-3">
           <Nav className="ml-auto text-left">
             <NavLink
               exact
               className={({ isActive }) => `${styles.NavLink} ${isActive ? styles.Active : ''}`}
               to="/"
             >
-              <i className="fas fa-home"></i>Home
+              <House size={24} className="mr-2" />
+              Home
             </NavLink>
             <NavLink
               className={({ isActive }) => `${styles.NavLink} ${isActive ? styles.Active : ''}`}
               to="/signin"
             >
-              <i className="fas fa-sign-in-alt"></i>Sign in
+              <BoxArrowInLeft size={24} className="mr-2" />
+              Sign in
             </NavLink>
             <NavLink
               to="/signup"
               className={({ isActive }) => `${styles.NavLink} ${isActive ? styles.Active : ''}`}
             >
-              <i className="fas fa-user-plus"></i>Sign up
+              <PersonPlusFill size={24} className="mr-2" />
+              Sign up
             </NavLink>
           </Nav>
         </Navbar.Collapse>
