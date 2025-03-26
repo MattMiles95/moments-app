@@ -25,7 +25,7 @@ function App() {
         <Routes>
           <Route path="/" element={<h1>Homepage</h1>} />
           <Route path="/signin" element={<h1>Sign in</h1>} />
-          <Route path="/signup" element={() =><SignUpForm />} />
+          <Route path="/signup" element={<SignUpForm />} />
           {/* Catch page not found */}
           <Route path="*" element={<h1>Page Not Found</h1>} />
         </Routes>
