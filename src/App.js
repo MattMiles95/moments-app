@@ -1,5 +1,8 @@
 /// IMPORTS ///
 
+// API
+import './api/axiosDefaults';
+
 // React
 import { Route, Routes } from "react-router-dom";
 
@@ -11,6 +14,7 @@ import Container from "react-bootstrap/Container";
 
 // My Components
 import NavBar from "./components/NavBar";
+import SignUpForm from './pages/auth/SignUpForm';
 
 // APP ///
 function App() {
@@ -21,7 +25,7 @@ function App() {
         <Routes>
           <Route path="/" element={<h1>Homepage</h1>} />
           <Route path="/signin" element={<h1>Sign in</h1>} />
-          <Route path="/signup" element={<h1>Sign up</h1>} />
+          <Route path="/signup" element={() =><SignUpForm />} />
           {/* Catch page not found */}
           <Route path="*" element={<h1>Page Not Found</h1>} />
         </Routes>
