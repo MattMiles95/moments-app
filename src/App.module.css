@@ -80,3 +80,8 @@ figure {
 *::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+.avatar {
+  position: relative;
+  top: -50px;
+}

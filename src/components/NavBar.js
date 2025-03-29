@@ -16,15 +16,64 @@ import {House } from "react-bootstrap-icons";
 import { BoxArrowInLeft } from "react-bootstrap-icons";
 import { BoxArrowInRight } from "react-bootstrap-icons";
 import { PersonPlusFill } from "react-bootstrap-icons";
+import { PlusSquare } from "react-bootstrap-icons";
+import { List } from "react-bootstrap-icons";
+import { Heart } from "react-bootstrap-icons";
 
-// Local
+// Context
 import { useCurrentUser } from "../context/CurrentUserContext";
+
+// Local Components
+import Avatar from "./Avatar";
 
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
 
-  const loggedInIcons = <>{currentUser?.username}</>
+  const addPostIcon = (
+    <NavLink
+        className={({ isActive }) => `${styles.NavLink} ${isActive ? styles.Active : ''}`}
+        to="/posts/create"
+      >
+        <PlusSquare size={24} className="m-2" />
+      </NavLink>
+  )
+
+  const loggedInIcons = 
+    <>
+      {/* FEED */}
+      <NavLink
+        className={({ isActive }) => `${styles.NavLink} ${isActive ? styles.Active : ''}`}
+        to="/feed"
+      >
+        <List size={24} className="m-2" />
+      </NavLink>
+
+      {/* LIKED */}
+      <NavLink
+        className={({ isActive }) => `${styles.NavLink} ${isActive ? styles.Active : ''}`}
+        to="/liked"
+      >
+        <Heart size={24} className="m-2" />
+      </NavLink>
+
+      {/* SIGN OUT */}
+      <NavLink
+        className={styles.NavLink}
+        to="/"
+      >
+        <BoxArrowInRight size={24} className="m-2" />
+      </NavLink>
+
+      {/* Profile */}
+      <NavLink
+        className={styles.NavLink}
+        to={`/profiles/${currentUser?.profile_id}`}
+      >
+        <Avatar src={currentUser?.profile_image} text='' height={40} className="m-2" />
+      </NavLink>
+    </>
+    
   const loggedOutIcons = (
     <>
       {/* SIGN IN */}
@@ -32,8 +81,7 @@ const NavBar = () => {
         className={({ isActive }) => `${styles.NavLink} ${isActive ? styles.Active : ''}`}
         to="/signin"
       >
-        <BoxArrowInLeft size={24} className="mr-2" />
-        Sign in
+        <BoxArrowInLeft size={24} className="m-2" />
       </NavLink>
 
       {/* SIGN UP */}
@@ -41,8 +89,7 @@ const NavBar = () => {
         to="/signup"
         className={({ isActive }) => `${styles.NavLink} ${isActive ? styles.Active : ''}`}
       >
-        <PersonPlusFill size={24} className="mr-2" />
-        Sign up
+        <PersonPlusFill size={24} className="m-2" />
       </NavLink>
     </>
   );
@@ -55,6 +102,7 @@ const NavBar = () => {
             <img src={logo} alt="logo" height="45" />
           </Navbar.Brand>
         </NavLink>
+        {currentUser && addPostIcon}
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav" className="pt-3">
           <Nav className="ml-auto text-left">
@@ -63,8 +111,7 @@ const NavBar = () => {
               className={({ isActive }) => `${styles.NavLink} ${isActive ? styles.Active : ''}`}
               to="/"
             >
-              <House size={24} className="mr-2" />
-              Home
+              <House size={24} className="m-2" />
             </NavLink>
             {currentUser ? loggedInIcons : loggedOutIcons}
           </Nav>
