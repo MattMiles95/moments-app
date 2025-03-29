@@ -7,6 +7,8 @@ import appStyles from "../../App.module.css";
 
 import axios from "axios";
 
+import { useSetCurrentUser } from "../../context/CurrentUserContext";
+
 import {
   Form,
   Button,
@@ -16,7 +18,6 @@ import {
   Container,
   Alert,
 } from "react-bootstrap";
-import { useSetCurrentUser } from "../../context/CurrentUserContext";
 
 
 function SignInForm() {
