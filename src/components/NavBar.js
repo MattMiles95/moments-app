@@ -1,7 +1,7 @@
 /// IMPORTS ///
 
 // React
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 
 // CSS
@@ -17,8 +17,35 @@ import { BoxArrowInLeft } from "react-bootstrap-icons";
 import { BoxArrowInRight } from "react-bootstrap-icons";
 import { PersonPlusFill } from "react-bootstrap-icons";
 
+// Local
+import { CurrentUserContext } from "../App";
+
 
 const NavBar = () => {
+  const currentUser = useContext(CurrentUserContext);
+  const loggedOutIcons = (
+    <>
+      {/* SIGN IN */}
+      <NavLink
+        className={({ isActive }) => `${styles.NavLink} ${isActive ? styles.Active : ''}`}
+        to="/signin"
+      >
+        <BoxArrowInLeft size={24} className="mr-2" />
+        Sign in
+      </NavLink>
+
+      {/* SIGN UP */}
+      <NavLink
+        to="/signup"
+        className={({ isActive }) => `${styles.NavLink} ${isActive ? styles.Active : ''}`}
+      >
+        <PersonPlusFill size={24} className="mr-2" />
+        Sign up
+      </NavLink>
+    </>
+  );
+  const loggedInIcons = <>{currentUser?.username}</>
+
   return (
     <Navbar className={styles.NavBar} expand="md" fixed="top">
       <Container>
@@ -38,20 +65,7 @@ const NavBar = () => {
               <House size={24} className="mr-2" />
               Home
             </NavLink>
-            <NavLink
-              className={({ isActive }) => `${styles.NavLink} ${isActive ? styles.Active : ''}`}
-              to="/signin"
-            >
-              <BoxArrowInLeft size={24} className="mr-2" />
-              Sign in
-            </NavLink>
-            <NavLink
-              to="/signup"
-              className={({ isActive }) => `${styles.NavLink} ${isActive ? styles.Active : ''}`}
-            >
-              <PersonPlusFill size={24} className="mr-2" />
-              Sign up
-            </NavLink>
+            {currentUser ? loggedInIcons : loggedOutIcons}
           </Nav>
         </Navbar.Collapse>
       </Container>
