@@ -2,7 +2,6 @@
 
 // API
 import "./api/axiosDefaults";
-import axios from "axios";
 
 // React
 import { Route, Routes } from "react-router-dom";
@@ -17,32 +16,11 @@ import Container from "react-bootstrap/Container";
 import NavBar from "./components/NavBar";
 import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
-import { createContext, useEffect, useState } from "react";
-
-/// EXPORTS ///
-export const CurrentUserContext = createContext();
-export const SetCurrentUserContext = createContext();
 
 // APP ///
 function App() {
-  const [currentUser, setCurrentUser] = useState(null);
-
-  const handleMount = async () => {
-    try {
-      const { data } = await axios.get("/dj-rest-auth/user/");
-      setCurrentUser(data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  useEffect(() => {
-    handleMount();
-  }, []);
 
   return (
-    <CurrentUserContext.Provider value={currentUser}>
-      <SetCurrentUserContext.Provider value={setCurrentUser}>
         <div className={styles.App}>
           <NavBar />
           <Container className={styles.Main}>
@@ -55,8 +33,6 @@ function App() {
             </Routes>
           </Container>
         </div>
-      </SetCurrentUserContext.Provider>
-    </CurrentUserContext.Provider>
   );
 }
 

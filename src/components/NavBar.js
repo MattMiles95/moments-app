@@ -1,7 +1,7 @@
 /// IMPORTS ///
 
 // React
-import React, { useContext } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 
 // CSS
@@ -18,11 +18,13 @@ import { BoxArrowInRight } from "react-bootstrap-icons";
 import { PersonPlusFill } from "react-bootstrap-icons";
 
 // Local
-import { CurrentUserContext } from "../App";
+import { useCurrentUser } from "../context/CurrentUserContext";
 
 
 const NavBar = () => {
-  const currentUser = useContext(CurrentUserContext);
+  const currentUser = useCurrentUser();
+
+  const loggedInIcons = <>{currentUser?.username}</>
   const loggedOutIcons = (
     <>
       {/* SIGN IN */}
@@ -44,7 +46,6 @@ const NavBar = () => {
       </NavLink>
     </>
   );
-  const loggedInIcons = <>{currentUser?.username}</>
 
   return (
     <Navbar className={styles.NavBar} expand="md" fixed="top">
