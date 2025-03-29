@@ -1,7 +1,7 @@
 /// IMPORTS ///
 
 // React
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
 // CSS
@@ -12,7 +12,7 @@ import logo from "../assets/logo.png";
 
 // Bootstrap Components
 import { Navbar, Container, Nav } from "react-bootstrap";
-import {House } from "react-bootstrap-icons";
+import { House } from "react-bootstrap-icons";
 import { BoxArrowInLeft } from "react-bootstrap-icons";
 import { BoxArrowInRight } from "react-bootstrap-icons";
 import { PersonPlusFill } from "react-bootstrap-icons";
@@ -21,7 +21,10 @@ import { List } from "react-bootstrap-icons";
 import { Heart } from "react-bootstrap-icons";
 
 // Context
-import { useCurrentUser, useSetCurrentUser } from "../context/CurrentUserContext";
+import {
+  useCurrentUser,
+  useSetCurrentUser,
+} from "../context/CurrentUserContext";
 
 // Axios
 import axios from "axios";
@@ -29,10 +32,23 @@ import axios from "axios";
 // Local Components
 import Avatar from "./Avatar";
 
-
 const NavBar = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
+
+  const [expanded, setExpanded] = useState(false);
+  const ref = useRef(null);
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (ref.current && !ref.current.contains(e.target)) {
+        setExpanded(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [ref]);
 
   const handleSignOut = async () => {
     try {
@@ -45,18 +61,22 @@ const NavBar = () => {
 
   const addPostIcon = (
     <NavLink
-        className={({ isActive }) => `${styles.NavLink} ${isActive ? styles.Active : ''}`}
-        to="/posts/create"
-      >
-        <PlusSquare size={24} className="m-2" />
-      </NavLink>
-  )
+      className={({ isActive }) =>
+        `${styles.NavLink} ${isActive ? styles.Active : ""}`
+      }
+      to="/posts/create"
+    >
+      <PlusSquare size={24} className="m-2" />
+    </NavLink>
+  );
 
-  const loggedInIcons = 
+  const loggedInIcons = (
     <>
       {/* FEED */}
       <NavLink
-        className={({ isActive }) => `${styles.NavLink} ${isActive ? styles.Active : ''}`}
+        className={({ isActive }) =>
+          `${styles.NavLink} ${isActive ? styles.Active : ""}`
+        }
         to="/feed"
       >
         <List size={24} className="m-2" />
@@ -64,18 +84,16 @@ const NavBar = () => {
 
       {/* LIKED */}
       <NavLink
-        className={({ isActive }) => `${styles.NavLink} ${isActive ? styles.Active : ''}`}
+        className={({ isActive }) =>
+          `${styles.NavLink} ${isActive ? styles.Active : ""}`
+        }
         to="/liked"
       >
         <Heart size={24} className="m-2" />
       </NavLink>
 
       {/* SIGN OUT */}
-      <NavLink
-        className={styles.NavLink}
-        to="/"
-        onClick={handleSignOut}
-      >
+      <NavLink className={styles.NavLink} to="/" onClick={handleSignOut}>
         <BoxArrowInRight size={24} className="m-2" />
       </NavLink>
 
@@ -84,15 +102,23 @@ const NavBar = () => {
         className={styles.NavLink}
         to={`/profiles/${currentUser?.profile_id}`}
       >
-        <Avatar src={currentUser?.profile_image} text='' height={40} className="m-2" />
+        <Avatar
+          src={currentUser?.profile_image}
+          text=""
+          height={40}
+          className="m-2"
+        />
       </NavLink>
     </>
-    
+  );
+
   const loggedOutIcons = (
     <>
       {/* SIGN IN */}
       <NavLink
-        className={({ isActive }) => `${styles.NavLink} ${isActive ? styles.Active : ''}`}
+        className={({ isActive }) =>
+          `${styles.NavLink} ${isActive ? styles.Active : ""}`
+        }
         to="/signin"
       >
         <BoxArrowInLeft size={24} className="m-2" />
@@ -101,7 +127,9 @@ const NavBar = () => {
       {/* SIGN UP */}
       <NavLink
         to="/signup"
-        className={({ isActive }) => `${styles.NavLink} ${isActive ? styles.Active : ''}`}
+        className={({ isActive }) =>
+          `${styles.NavLink} ${isActive ? styles.Active : ""}`
+        }
       >
         <PersonPlusFill size={24} className="m-2" />
       </NavLink>
@@ -109,7 +137,12 @@ const NavBar = () => {
   );
 
   return (
-    <Navbar className={styles.NavBar} expand="md" fixed="top">
+    <Navbar
+      expanded={expanded}
+      className={styles.NavBar}
+      expand="md"
+      fixed="top"
+    >
       <Container>
         <NavLink to="/">
           <Navbar.Brand>
@@ -117,12 +150,18 @@ const NavBar = () => {
           </Navbar.Brand>
         </NavLink>
         {currentUser && addPostIcon}
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Toggle
+          ref={ref}
+          onClick={() => setExpanded(!expanded)}
+          aria-controls="basic-navbar-nav"
+        />
         <Navbar.Collapse id="basic-navbar-nav" className="pt-3">
           <Nav className="ml-auto text-left">
             <NavLink
               exact
-              className={({ isActive }) => `${styles.NavLink} ${isActive ? styles.Active : ''}`}
+              className={({ isActive }) =>
+                `${styles.NavLink} ${isActive ? styles.Active : ""}`
+              }
               to="/"
             >
               <House size={24} className="m-2" />
