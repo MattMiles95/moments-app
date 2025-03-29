@@ -21,7 +21,10 @@ import { List } from "react-bootstrap-icons";
 import { Heart } from "react-bootstrap-icons";
 
 // Context
-import { useCurrentUser } from "../context/CurrentUserContext";
+import { useCurrentUser, useSetCurrentUser } from "../context/CurrentUserContext";
+
+// Axios
+import axios from "axios";
 
 // Local Components
 import Avatar from "./Avatar";
@@ -29,6 +32,16 @@ import Avatar from "./Avatar";
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
+  const setCurrentUser = useSetCurrentUser();
+
+  const handleSignOut = async () => {
+    try {
+      await axios.post("/dj-rest-auth/logout/");
+      setCurrentUser(null);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const addPostIcon = (
     <NavLink
@@ -61,6 +74,7 @@ const NavBar = () => {
       <NavLink
         className={styles.NavLink}
         to="/"
+        onClick={handleSignOut}
       >
         <BoxArrowInRight size={24} className="m-2" />
       </NavLink>

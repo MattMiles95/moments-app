@@ -29,7 +29,7 @@ function App() {
               <Route path="/signin" element={<SignInForm />} />
               <Route path="/signup" element={<SignUpForm />} />
               {/* Catch page not found */}
-              <Route path="*" element={<h1>Page Not Found</h1>} />
+              <Route path="*" element={<h3 className="text-center mt-5">You seem to be lost... click the logo to return home!</h3>} />
             </Routes>
           </Container>
         </div>
