@@ -31,24 +31,13 @@ import axios from "axios";
 
 // Local Components
 import Avatar from "./Avatar";
+import UseClickOutsideToggle from "../hooks/UseClickOutsideToggle";
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
 
-  const [expanded, setExpanded] = useState(false);
-  const ref = useRef(null);
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (ref.current && !ref.current.contains(e.target)) {
-        setExpanded(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [ref]);
+  const { expanded, setExpanded, ref } = UseClickOutsideToggle();
 
   const handleSignOut = async () => {
     try {
