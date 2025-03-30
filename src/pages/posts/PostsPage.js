@@ -10,6 +10,9 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 
+// Bootstrap Icons
+import Search from "react-bootstrap-icons/dist/icons/search";
+
 // CSS
 import appStyles from "../../App.module.css";
 import styles from "../../styles/PostsPage.module.css";
@@ -28,29 +31,51 @@ function PostsPage({ message, filter = "" }) {
   const [posts, setPosts] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const { data } = await axiosReq.get(`/posts/?${filter}`);
+        const { data } = await axiosReq.get(`/posts/?${filter}search=${query}`);
         setPosts(data);
         setHasLoaded(true);
-      } catch (error) {
-        console.error("Error fetching posts:", error);
+      } catch (err) {
+        console.err("Error fetching posts:", err);
       }
     };
 
     setHasLoaded(false);
-    fetchPosts();
-  }, [filter, pathname]);
+    const timer = setTimeout(() => {
+      fetchPosts();
+    }, 1000);
+    return () => {
+      clearTimeout(timer);
+    }
+  }, [filter, query, pathname]);
 
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <p>Popular profiles mobile</p>
+        <div className={styles.SearchIcon}>
+          <Search size={18} />
+        </div>
+        <Form
+          className={styles.SearchBar}
+          onSubmit={(e) => e.preventDefault()}
+        >
+          <Form.Control
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            type="text"
+            className="mr-sm-2"
+            placeholder=" Search..."
+          />
+        </Form>
+
         {hasLoaded ? (
           <>
-            {posts.results.length ?(
+            {posts.results.length ? (
               posts.results.map((post) => (
                 <Post key={post.id} {...post} setPosts={setPosts} />
               ))
