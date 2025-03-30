@@ -17,6 +17,7 @@
   
   .Heart:hover {
     color: #2142b2;
+    transition: 0.5s;
   }
   
   .HeartOutline:hover {
