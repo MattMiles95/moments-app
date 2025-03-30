@@ -1,5 +1,6 @@
 // React
 import React, { useEffect, useState } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 // React Router
 import { useLocation } from "react-router-dom";
@@ -26,6 +27,7 @@ import Asset from "../../components/Asset";
 
 // Assets
 import NoResults from "../../assets/no-results.png";
+import { fetchMoreData } from "../../utils/utils";
 
 function PostsPage({ message, filter = "" }) {
   const [posts, setPosts] = useState({ results: [] });
@@ -50,7 +52,7 @@ function PostsPage({ message, filter = "" }) {
     }, 1000);
     return () => {
       clearTimeout(timer);
-    }
+    };
   }, [filter, query, pathname]);
 
   return (
@@ -60,10 +62,7 @@ function PostsPage({ message, filter = "" }) {
         <div className={styles.SearchIcon}>
           <Search size={18} />
         </div>
-        <Form
-          className={styles.SearchBar}
-          onSubmit={(e) => e.preventDefault()}
-        >
+        <Form className={styles.SearchBar} onSubmit={(e) => e.preventDefault()}>
           <Form.Control
             value={query}
             onChange={(e) => setQuery(e.target.value)}
@@ -76,9 +75,15 @@ function PostsPage({ message, filter = "" }) {
         {hasLoaded ? (
           <>
             {posts.results.length ? (
-              posts.results.map((post) => (
-                <Post key={post.id} {...post} setPosts={setPosts} />
-              ))
+              <InfiniteScroll
+                children={posts.results.map((post) => (
+                  <Post key={post.id} {...post} setPosts={setPosts} />
+                ))}
+                dataLength={posts.results.length}
+                loader={<Asset spinner />}
+                hasMore={!!posts.next}
+                next={() => fetchMoreData(posts, setPosts)}
+              />
             ) : (
               <Container className={appStyles.Content}>
                 <Asset src={NoResults} message={message} />
