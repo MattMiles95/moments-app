@@ -25,39 +25,57 @@ import PostsPage from "./pages/posts/PostsPage";
 
 // APP ///
 function App() {
-  const currentUser = useCurrentUser()
-  const profile_id = currentUser?.profile_id || ""
+  const currentUser = useCurrentUser();
+  const profile_id = currentUser?.profile_id || "";
 
   return (
-        <div className={styles.App}>
-          <NavBar />
-          <Container className={styles.Main}>
-            <Routes>
-              <Route
-              exact
-              path="/"
-              element={<PostsPage message="No results found. Try searching for something!" />} />
-              <Route
-              exact
-              path="/feed"
-              element={<PostsPage message="No results found. Try searching for something, or give someone a follow!" />}
-              filter={`owner__followed__owner__profile=${profile_id}`}
+    <div className={styles.App}>
+      <NavBar />
+      <Container className={styles.Main}>
+        <Routes>
+          <Route
+            exact
+            path="/"
+            element={
+              <PostsPage message="No results found. Try searching for something!" />
+            }
+          />
+          <Route
+            exact
+            path="/feed"
+            element={
+              <PostsPage
+                message="No results found. Try searching for something, or give someone a follow!"
+                filter={`owner__followed__owner__profile=${profile_id}`}
               />
-              <Route
-              exact
-              path="/liked"
-              element={<PostsPage message="No results found. Try searching for something, or give some posts a like!" />}
-              filter={`likes__owner__profile=${profile_id}&ordering=-likes__created_at&`}
+            }
+          />
+          <Route
+            exact
+            path="/liked"
+            element={
+              <PostsPage 
+                message="No results found. Try searching for something, or give some posts a like!"
+                filter={`likes__owner__profile=${profile_id}&ordering=-likes__created_at&`}
               />
-              <Route path="/signin" element={<SignInForm />} />
-              <Route path="/signup" element={<SignUpForm />} />
-              <Route path="/posts/create" element={<PostCreateForm />} />
-              <Route path="/posts/:id" element={<PostPage />} />
-              {/* Catch page not found */}
-              <Route path="*" element={<h3 className="text-center mt-5">You seem to be lost... click the logo to return home!</h3>} />
-            </Routes>
-          </Container>
-        </div>
+            }
+          />
+          <Route path="/signin" element={<SignInForm />} />
+          <Route path="/signup" element={<SignUpForm />} />
+          <Route path="/posts/create" element={<PostCreateForm />} />
+          <Route path="/posts/:id" element={<PostPage />} />
+          {/* Catch page not found */}
+          <Route
+            path="*"
+            element={
+              <h3 className="text-center mt-5">
+                You seem to be lost... click the logo to return home!
+              </h3>
+            }
+          />
+        </Routes>
+      </Container>
+    </div>
   );
 }
 
