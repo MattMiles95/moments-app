@@ -84,6 +84,11 @@ const Post = (props) => {
     }
   };
 
+  // Debugging for DropdownMenu bug
+  // console.log("is_owner:", is_owner);
+  // console.log("postPage:", postPage);
+  // console.log("Combined condition:", is_owner && postPage);
+
   return (
     <Card className={styles.Post}>
       <Card.Body>
