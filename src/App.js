@@ -12,22 +12,43 @@ import styles from "./App.module.css";
 // Bootstrap Components
 import Container from "react-bootstrap/Container";
 
-// My Components
+// Context
+import { useCurrentUser } from "./context/CurrentUserContext";
+
+// Local Components
 import NavBar from "./components/NavBar";
 import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
 import PostCreateForm from "./pages/posts/PostCreateForm";
 import PostPage from "./pages/posts/PostPage";
+import PostsPage from "./pages/posts/PostsPage";
 
 // APP ///
 function App() {
+  const currentUser = useCurrentUser()
+  const profile_id = currentUser?.profile_id || ""
 
   return (
         <div className={styles.App}>
           <NavBar />
           <Container className={styles.Main}>
             <Routes>
-              <Route exact path="/" element={<h1>Homepage</h1>} />
+              <Route
+              exact
+              path="/"
+              element={<PostsPage message="No results found. Try searching for something!" />} />
+              <Route
+              exact
+              path="/feed"
+              element={<PostsPage message="No results found. Try searching for something, or give someone a follow!" />}
+              filter={`owner__followed__owner__profile=${profile_id}`}
+              />
+              <Route
+              exact
+              path="/liked"
+              element={<PostsPage message="No results found. Try searching for something, or give some posts a like!" />}
+              filter={`likes__owner__profile=${profile_id}&ordering=-likes__created_at&`}
+              />
               <Route path="/signin" element={<SignInForm />} />
               <Route path="/signup" element={<SignUpForm />} />
               <Route path="/posts/create" element={<PostCreateForm />} />
