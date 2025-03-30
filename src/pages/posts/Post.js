@@ -9,11 +9,12 @@ import { Heart } from "react-bootstrap-icons";
 import { HeartFill } from "react-bootstrap-icons";
 
 import Avatar from "../../components/Avatar";
+import MoreDropdown from "../../components/MoreDropdown";
 
 import styles from "../../styles/Post.module.css";
 
 import { useCurrentUser } from "../../context/CurrentUserContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { axiosRes } from "../../api/axiosDefaults";
 
@@ -36,6 +37,20 @@ const Post = (props) => {
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
+  const navigate = useNavigate();
+
+  const handleEdit = () => {
+    navigate(`/posts/${id}/edit`);
+  };
+
+  const handleDelete = async () => {
+    try {
+      await axiosRes.delete(`/posts/${id}/`);
+      navigate(-1);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   const handleLike = async () => {
     try {
@@ -79,7 +94,12 @@ const Post = (props) => {
           </Link>
           <div className="d-flex align-items-center">
             <span>{updated_at}</span>
-            {is_owner && postPage && "..."}
+            {is_owner && postPage && (
+              <MoreDropdown
+                handleEdit={handleEdit}
+                handleDelete={handleDelete}
+              />
+            )}
           </div>
         </div>
       </Card.Body>
@@ -91,7 +111,10 @@ const Post = (props) => {
         {content && <Card.Text>{content}</Card.Text>}
         <div className={styles.PostBar}>
           {is_owner ? (
-            <OverlayTrigger placement="top" overlay={<Tooltip>You can't like your own post!</Tooltip>}>
+            <OverlayTrigger
+              placement="top"
+              overlay={<Tooltip>You can't like your own post!</Tooltip>}
+            >
               <Heart className="mr-1" size={20} />
             </OverlayTrigger>
           ) : like_id ? (
@@ -103,7 +126,10 @@ const Post = (props) => {
               <Heart className={`mr-1 ${styles.HeartOutline}`} size={20} />
             </span>
           ) : (
-            <OverlayTrigger placement="top" overlay={<Tooltip>Log in to like posts!</Tooltip>}>
+            <OverlayTrigger
+              placement="top"
+              overlay={<Tooltip>Log in to like posts!</Tooltip>}
+            >
               <Heart className="mr-1" size={20} />
             </OverlayTrigger>
           )}
