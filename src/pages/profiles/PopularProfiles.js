@@ -16,7 +16,7 @@ import { useCurrentUser } from "../../context/CurrentUserContext";
 // Assets
 import Asset from "../../components/Asset";
 
-const PopularProfiles = () => {
+const PopularProfiles = ({ mobile }) => {
   const [profileData, setProfileData] = useState({
     // we will use the pageProfile later!
     pageProfile: { results: [] },
@@ -45,10 +45,18 @@ const PopularProfiles = () => {
 
   return (
     <div>
-      <Container className={appStyles.Content}>
+      <Container
+        className={`${appStyles.Content} ${mobile && "d-lg-none text-center"}`}
+      >
         <p className="font-weight-bold">Popular Profiles</p>
         {!popularProfiles.results.length ? (
           <Asset spinner />
+        ) : mobile ? (
+          <div className="d-flex justify-content-around">
+            {popularProfiles.results.slice(0, 4).map((profile) => (
+              <p key={profile.id}>{profile.owner}</p>
+            ))}
+          </div>
         ) : (
           popularProfiles.results.map((profile) => (
             <p key={profile.id}>{profile.owner}</p>
