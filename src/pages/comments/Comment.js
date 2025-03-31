@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { axiosRes } from "../../api/axiosDefaults";
 
@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 
 import { useCurrentUser } from "../../context/CurrentUserContext";
 
+import CommentEditForm from "./CommentEditForm";
 import MoreDropdown from "../../components/MoreDropdown";
 
 const Comment = (props) => {
@@ -25,6 +26,7 @@ const Comment = (props) => {
     setComments,
   } = props;
 
+  const [showEditForm, setShowEditForm] = useState(false);
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
 
@@ -50,7 +52,7 @@ const Comment = (props) => {
   };
 
   return (
-    <div>
+    <>
       <hr />
       <Card>
         <Card.Body className="d-flex align-items-start">
@@ -64,7 +66,18 @@ const Comment = (props) => {
             <div>
               <span className={styles.Owner}>{owner}</span>
               <span className={styles.Date}>{updated_at}</span>
-              <p>{content}</p>
+              {showEditForm ? (
+                <CommentEditForm
+                  id={id}
+                  profile_id={profile_id}
+                  content={content}
+                  profileImage={profile_image}
+                  setComments={setComments}
+                  setShowEditForm={setShowEditForm}
+                />
+              ) : (
+                <p>{content}</p>
+              )}
             </div>
 
             {/* MoreDropdown column */}
@@ -73,7 +86,7 @@ const Comment = (props) => {
                 {" "}
                 {/* mt-1 to match baseline of owner/date spans */}
                 <MoreDropdown
-                  handleEdit={() => {}}
+                  handleEdit={() => setShowEditForm(true)}
                   handleDelete={handleDelete}
                 />
               </div>
@@ -81,7 +94,7 @@ const Comment = (props) => {
           </div>
         </Card.Body>
       </Card>
-    </div>
+    </>
   );
 };
 
