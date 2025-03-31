@@ -1,23 +1,27 @@
+// React
 import React, { useState, useRef, useEffect } from "react";
 
-import { useNavigate } from "react-router-dom";
-import { useParams } from "react-router-dom";
-
+// API
 import { axiosReq } from "../../api/axiosDefaults";
 
+// Bootstrap Components
 import {
-  Form,
-  Button,
-  Image,
-  Col,
-  Row,
-  Container,
   Alert,
+  Button,
+  Col,
+  Container,
+  Form,
+  Image,
+  Row,
 } from "react-bootstrap";
 
-import styles from "../../styles/PostCreateEditForm.module.css";
+// CSS
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
+import styles from "../../styles/PostCreateEditForm.module.css";
+
+// React Router
+import { useParams, useNavigate } from "react-router-dom";
 
 function PostEditForm() {
   const [errors, setErrors] = useState({});

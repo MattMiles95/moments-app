@@ -1,24 +1,24 @@
-/// IMPORTS ///
-
 // React
 import React, { useState, useRef, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
-// CSS
-import styles from "../styles/NavBar.module.css";
+// API
+import axios from "axios";
 
 // Assets
 import logo from "../assets/logo.png";
 
 // Bootstrap Components
 import { Navbar, Container, Nav } from "react-bootstrap";
-import { House } from "react-bootstrap-icons";
+
+// Bootstrap Icons
 import { BoxArrowInLeft } from "react-bootstrap-icons";
 import { BoxArrowInRight } from "react-bootstrap-icons";
+import { Heart } from "react-bootstrap-icons";
+import { House } from "react-bootstrap-icons";
+import { List } from "react-bootstrap-icons";
 import { PersonPlusFill } from "react-bootstrap-icons";
 import { PlusSquare } from "react-bootstrap-icons";
-import { List } from "react-bootstrap-icons";
-import { Heart } from "react-bootstrap-icons";
 
 // Context
 import {
@@ -26,8 +26,8 @@ import {
   useSetCurrentUser,
 } from "../context/CurrentUserContext";
 
-// Axios
-import axios from "axios";
+// CSS
+import styles from "../styles/NavBar.module.css";
 
 // Local Components
 import Avatar from "./Avatar";

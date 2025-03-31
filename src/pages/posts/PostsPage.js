@@ -2,14 +2,17 @@
 import React, { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-// React Router
-import { useLocation } from "react-router-dom";
+// API
+import { axiosReq } from "../../api/axiosDefaults";
+
+// Assets
+import NoResults from "../../assets/no-results.png";
 
 // Bootstrap Components
-import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
+import Form from "react-bootstrap/Form";
+import Row from "react-bootstrap/Row";
 
 // Bootstrap Icons
 import Search from "react-bootstrap-icons/dist/icons/search";
@@ -18,17 +21,14 @@ import Search from "react-bootstrap-icons/dist/icons/search";
 import appStyles from "../../App.module.css";
 import styles from "../../styles/PostsPage.module.css";
 
-// API
-import { axiosReq } from "../../api/axiosDefaults";
-
 // Local Components
-import Post from "./Post";
 import Asset from "../../components/Asset";
 import PopularProfiles from "../profiles/PopularProfiles";
-
-// Assets
-import NoResults from "../../assets/no-results.png";
+import Post from "./Post";
 import { fetchMoreData } from "../../utils/utils";
+
+// React Router
+import { useLocation } from "react-router-dom";
 
 function PostsPage({ message, filter = "" }) {
   const [posts, setPosts] = useState({ results: [] });

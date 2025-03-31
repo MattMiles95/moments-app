@@ -1,18 +1,25 @@
+// React
 import React, { useState } from "react";
 
+// API
 import { axiosRes } from "../../api/axiosDefaults";
 
+// Bootstrap Components
 import Card from "react-bootstrap/Card";
-import Avatar from "../../components/Avatar";
 
-import styles from "../../styles/Comment.module.css";
-
-import { Link } from "react-router-dom";
-
+// Context
 import { useCurrentUser } from "../../context/CurrentUserContext";
 
+// CSS
+import styles from "../../styles/Comment.module.css";
+
+// Local Components
+import Avatar from "../../components/Avatar";
 import CommentEditForm from "./CommentEditForm";
 import MoreDropdown from "../../components/MoreDropdown";
+
+// React Router
+import { Link } from "react-router-dom";
 
 const Comment = (props) => {
   const {

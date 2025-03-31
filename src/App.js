@@ -1,13 +1,5 @@
-/// IMPORTS ///
-
 // API
 import "./api/axiosDefaults";
-
-// React
-import { Route, Routes } from "react-router-dom";
-
-// CSS
-import styles from "./App.module.css";
 
 // Bootstrap Components
 import Container from "react-bootstrap/Container";
@@ -15,14 +7,20 @@ import Container from "react-bootstrap/Container";
 // Context
 import { useCurrentUser } from "./context/CurrentUserContext";
 
+// CSS
+import styles from "./App.module.css";
+
 // Local Components
 import NavBar from "./components/NavBar";
-import SignUpForm from "./pages/auth/SignUpForm";
-import SignInForm from "./pages/auth/SignInForm";
 import PostCreateForm from "./pages/posts/PostCreateForm";
 import PostEditForm from "./pages/posts/PostEditForm";
 import PostPage from "./pages/posts/PostPage";
 import PostsPage from "./pages/posts/PostsPage";
+import SignUpForm from "./pages/auth/SignUpForm";
+import SignInForm from "./pages/auth/SignInForm";
+
+// React Router
+import { Route, Routes } from "react-router-dom";
 
 // APP ///
 function App() {

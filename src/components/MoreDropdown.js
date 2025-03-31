@@ -1,9 +1,13 @@
+// React
 import React from "react";
 
+// Bootstrap Components
 import Dropdown from "react-bootstrap/Dropdown";
 
+// Bootstrap Icons
 import { PencilSquare, ThreeDotsVertical, Trash3 } from "react-bootstrap-icons";
 
+// CSS
 import styles from "../styles/MoreDropdown.module.css";
 
 const ThreeDots = React.forwardRef(({ onClick }, ref) => (

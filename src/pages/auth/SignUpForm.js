@@ -1,21 +1,27 @@
+// React
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
 
-import styles from "../../styles/SignInUpForm.module.css";
-import btnStyles from "../../styles/Button.module.css";
-import appStyles from "../../App.module.css";
-
+// API
 import axios from "axios";
 
+// Bootstrap Components
 import {
-  Form,
-  Button,
-  Image,
-  Col,
-  Row,
-  Container,
   Alert,
+  Button,
+  Col,
+  Container,
+  Form,
+  Image,
+  Row,
 } from "react-bootstrap";
+
+// CSS
+import appStyles from "../../App.module.css";
+import btnStyles from "../../styles/Button.module.css";
+import styles from "../../styles/SignInUpForm.module.css";
+
+// React Router
+import { Link, useNavigate } from "react-router-dom";
 
 const SignUpForm = () => {
   const [signUpData, setSignUpData] = useState({

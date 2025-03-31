@@ -1,14 +1,10 @@
+// React
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
 
-import styles from "../../styles/SignInUpForm.module.css";
-import btnStyles from "../../styles/Button.module.css";
-import appStyles from "../../App.module.css";
-
+// API
 import axios from "axios";
 
-import { useSetCurrentUser } from "../../context/CurrentUserContext";
-
+// Bootstrap Components
 import {
   Form,
   Button,
@@ -18,6 +14,17 @@ import {
   Container,
   Alert,
 } from "react-bootstrap";
+
+// Context
+import { useSetCurrentUser } from "../../context/CurrentUserContext";
+
+// CSS
+import styles from "../../styles/SignInUpForm.module.css";
+import btnStyles from "../../styles/Button.module.css";
+import appStyles from "../../App.module.css";
+
+// React Router
+import { Link, useNavigate } from "react-router-dom";
 
 
 function SignInForm() {

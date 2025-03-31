@@ -1,8 +1,13 @@
+// React
 import React, { useState } from "react";
 
-import Form from "react-bootstrap/Form";
+// API
 import { axiosRes } from "../../api/axiosDefaults";
 
+// Bootstrap Components
+import Form from "react-bootstrap/Form";
+
+// CSS
 import styles from "../../styles/CommentCreateEditForm.module.css";
 
 function CommentEditForm(props) {

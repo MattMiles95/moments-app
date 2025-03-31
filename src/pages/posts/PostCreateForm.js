@@ -1,8 +1,13 @@
+// React
 import React, { useState, useRef, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 
+// API
 import { axiosReq } from "../../api/axiosDefaults";
 
+// Assets
+import Upload from "../../assets/upload.png";
+
+// Bootstrap Components
 import {
   Form,
   Button,
@@ -13,13 +18,16 @@ import {
   Alert,
 } from "react-bootstrap";
 
-import Upload from "../../assets/upload.png";
-
+// CSS
 import styles from "../../styles/PostCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 
+// Local Components
 import Asset from "../../components/Asset";
+
+// React Router
+import { useNavigate } from "react-router-dom";
 
 function PostCreateForm() {
   const [errors, setErrors] = useState({});

@@ -4,17 +4,17 @@ import React, { useEffect, useState } from "react";
 // API
 import { axiosReq } from "../../api/axiosDefaults";
 
+// Assets
+import Asset from "../../components/Asset";
+
 // Bootstrap
 import { Container } from "react-bootstrap";
-
-// CSS
-import appStyles from "../../App.module.css";
 
 // Context
 import { useCurrentUser } from "../../context/CurrentUserContext";
 
-// Assets
-import Asset from "../../components/Asset";
+// CSS
+import appStyles from "../../App.module.css";
 
 const PopularProfiles = ({ mobile }) => {
   const [profileData, setProfileData] = useState({

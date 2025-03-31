@@ -1,22 +1,29 @@
+// React 
 import React from "react";
 
+// API
+import { axiosRes } from "../../api/axiosDefaults";
+
+// Bootstrap Components
 import Card from "react-bootstrap/Card";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 
-import { Chat } from "react-bootstrap-icons";
-import { Heart } from "react-bootstrap-icons";
-import { HeartFill } from "react-bootstrap-icons";
+// Bootstrap Icons
+import { Chat, Heart, HeartFill } from "react-bootstrap-icons";
 
+// Context
+import { useCurrentUser } from "../../context/CurrentUserContext";
+
+// CSS
+import styles from "../../styles/Post.module.css";
+
+// Local Components
 import Avatar from "../../components/Avatar";
 import MoreDropdown from "../../components/MoreDropdown";
 
-import styles from "../../styles/Post.module.css";
-
-import { useCurrentUser } from "../../context/CurrentUserContext";
+// React Router
 import { Link, useNavigate } from "react-router-dom";
-
-import { axiosRes } from "../../api/axiosDefaults";
 
 const Post = (props) => {
   const {

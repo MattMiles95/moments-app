@@ -1,12 +1,20 @@
+// React
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 
-import Form from "react-bootstrap/Form";
-import InputGroup from "react-bootstrap/InputGroup";
-
-import styles from "../../styles/CommentCreateEditForm.module.css";
-import Avatar from "../../components/Avatar";
+// API
 import { axiosRes } from "../../api/axiosDefaults";
+
+// Bootstrap Components
+import { Form, InputGroup } from "react-bootstrap";
+
+// CSS
+import styles from "../../styles/CommentCreateEditForm.module.css";
+
+// Local Components
+import Avatar from "../../components/Avatar";
+
+// React Router
+import { Link } from "react-router-dom";
 
 function CommentCreateForm(props) {
   const { post, setPost, setComments, profileImage, profile_id } = props;

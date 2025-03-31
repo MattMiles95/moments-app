@@ -1,23 +1,32 @@
+// React
 import React, { useEffect, useState } from "react";
-import InfiniteScroll from "react-infinite-scroll-component";
 
-import { useParams } from "react-router-dom";
-
+// API
 import { axiosReq } from "../../api/axiosDefaults";
 
+// Bootstrap Components
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+
+// Context
 import { useCurrentUser } from "../../context/CurrentUserContext";
 
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import Container from "react-bootstrap/Container";
-
+// CSS
 import appStyles from "../../App.module.css";
 
-import Post from "./Post";
-import CommentCreateForm from "../comments/CommentCreateForm";
-import Comment from "../comments/Comment";
+// Local Components
 import Asset from "../../components/Asset";
+import Comment from "../comments/Comment";
+import CommentCreateForm from "../comments/CommentCreateForm";
+import Post from "./Post";
 import { fetchMoreData } from "../../utils/utils";
+
+// React Components
+import InfiniteScroll from "react-infinite-scroll-component";
+
+// React Router
+import { useParams } from "react-router-dom";
 
 function PostPage() {
   const { id } = useParams();
