@@ -4,9 +4,6 @@ import React, { useEffect, useState } from "react";
 // API
 import { axiosReq } from "../../api/axiosDefaults";
 
-// Assets
-import Asset from "../../components/Asset";
-
 // Bootstrap
 import { Container } from "react-bootstrap";
 
@@ -15,6 +12,10 @@ import { useCurrentUser } from "../../context/CurrentUserContext";
 
 // CSS
 import appStyles from "../../App.module.css";
+
+// Local Components
+import Asset from "../../components/Asset";
+import Profile from "./Profile";
 
 const PopularProfiles = ({ mobile }) => {
   const [profileData, setProfileData] = useState({
@@ -54,12 +55,12 @@ const PopularProfiles = ({ mobile }) => {
         ) : mobile ? (
           <div className="d-flex justify-content-around">
             {popularProfiles.results.slice(0, 4).map((profile) => (
-              <p key={profile.id}>{profile.owner}</p>
+              <Profile key={profile.id} profile={profile} mobile />
             ))}
           </div>
         ) : (
           popularProfiles.results.map((profile) => (
-            <p key={profile.id}>{profile.owner}</p>
+            <Profile key={profile.id} profile={profile} />
           ))
         )}
       </Container>
