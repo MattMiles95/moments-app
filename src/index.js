@@ -1,17 +1,31 @@
+// React
 import React from "react";
-import ReactDOM from "react-dom/client";
+
+// Context
+import { CurrentUserProvider } from "./context/CurrentUserContext";
+import { ProfileDataProvider } from "./context/ProfileDataContext";
+
+// CSS
 import "./index.css";
+
+// Local Components
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+
+// React DOM
+import ReactDOM from "react-dom/client";
+
+// React Router
 import { BrowserRouter as Router } from "react-router-dom";
-import { CurrentUserProvider } from "./context/CurrentUserContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Router>
       <CurrentUserProvider>
-        <App />
+        <ProfileDataProvider>
+          <App />
+        </ProfileDataProvider>
       </CurrentUserProvider>
     </Router>
   </React.StrictMode>,
