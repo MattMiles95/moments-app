@@ -5,8 +5,8 @@ import { axiosReq } from "../api/axiosDefaults";
 import { createContext, useContext, useEffect, useState } from "react";
 import { useCurrentUser } from "../context/CurrentUserContext";
 
-export const ProfileDataContext = createContext();
-export const SetProfileDataContext = createContext();
+const ProfileDataContext = createContext();
+const SetProfileDataContext = createContext();
 
 export const useProfileData = () => useContext(ProfileDataContext);
 export const useSetProfileData = () => useContext(SetProfileDataContext);
@@ -23,14 +23,14 @@ export const ProfileDataProvider = ({ children }) => {
     const handleMount = async () => {
       try {
         const { data } = await axiosReq.get(
-          "/profiles/?ordering=followers_count"
+          "/profiles/?ordering=-followers_count"
         );
         setProfileData((prevState) => ({
           ...prevState,
           popularProfiles: data,
         }));
       } catch (err) {
-        console.error(err);
+        console.log(err);
       }
     };
 
