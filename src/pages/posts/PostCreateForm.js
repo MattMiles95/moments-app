@@ -23,6 +23,9 @@ import styles from "../../styles/PostCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 
+// Hooks
+import { UseRedirect } from "../../hooks/UseRedirect";
+
 // Local Components
 import Asset from "../../components/Asset";
 
@@ -30,6 +33,7 @@ import Asset from "../../components/Asset";
 import { useNavigate } from "react-router-dom";
 
 function PostCreateForm() {
+  UseRedirect('loggedOut');
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
   const imageInput = useRef(null);

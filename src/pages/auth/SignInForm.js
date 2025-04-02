@@ -1,5 +1,5 @@
 // React
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 
 // API
 import axios from "axios";
@@ -23,12 +23,16 @@ import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 
+// Hooks
+import { UseRedirect } from "../../hooks/UseRedirect";
+
 // React Router
 import { Link, useNavigate } from "react-router-dom";
 
 
 function SignInForm() {
   const setCurrentUser = useSetCurrentUser();
+  UseRedirect("loggedIn");
 
   const [signInData, setSignInData] = useState({
     username: "",
@@ -44,7 +48,7 @@ function SignInForm() {
     try {
       const { data } = await axios.post("/dj-rest-auth/login/", signInData);
       setCurrentUser(data.user);
-      navigate("/");
+      navigate(-1);
     } catch (err) {
       setErrors(err.response?.data);
     }
