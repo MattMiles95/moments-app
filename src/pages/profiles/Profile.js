@@ -16,6 +16,7 @@ import Avatar from "../../components/Avatar";
 
 // React Router
 import { Link } from "react-router-dom";
+import { useSetProfileData } from "../../context/ProfileDataContext";
 
 const Profile = (props) => {
   const { profile, mobile, imageSize = 55 } = props;
@@ -23,6 +24,8 @@ const Profile = (props) => {
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
+
+  const {handleFollow} = useSetProfileData();
 
   return (
     <div
@@ -52,7 +55,7 @@ const Profile = (props) => {
           ) : (
             <Button
               className={`${btnStyles.Button} ${btnStyles.Black}`}
-              onClick={() => {}}
+              onClick={() => handleFollow(profile)}
             >
               follow
             </Button>
