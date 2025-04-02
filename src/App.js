@@ -19,6 +19,9 @@ import PostsPage from "./pages/posts/PostsPage";
 import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
 import ProfilePage from "./pages/profiles/ProfilePage";
+import UsernameForm from "./pages/profiles/UsernameForm";
+import UserPasswordForm from "./pages/profiles/UserPasswordForm";
+import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 
 // React Router
 import { Route, Routes } from "react-router-dom";
@@ -66,6 +69,9 @@ function App() {
           <Route path="/posts/:id" element={<PostPage />} />
           <Route path="/posts/:id/edit" element={<PostEditForm />} />
           <Route path="/profiles/:id" element={<ProfilePage />} />
+          <Route path="/profiles/:id/edit" element={<ProfileEditForm />} />
+          <Route path="/profiles/:id/edit/username" element={<UsernameForm />} />
+          <Route path="/profiles/:id/edit/password" element={<UserPasswordForm />} />
           {/* Catch page not found */}
           <Route
             path="*"

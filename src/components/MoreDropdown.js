@@ -10,6 +10,9 @@ import { PencilSquare, ThreeDotsVertical, Trash3 } from "react-bootstrap-icons";
 // CSS
 import styles from "../styles/MoreDropdown.module.css";
 
+// React Router
+import { useNavigate } from "react-router-dom";
+
 const ThreeDots = React.forwardRef(({ onClick }, ref) => (
   <i
     className="fas fa-ellipsis-v"
@@ -49,3 +52,35 @@ const MoreDropdown = ({ handleEdit, handleDelete }) => {
 };
 
 export default MoreDropdown;
+
+export function ProfileEditDropdown({ id }) {
+  const navigate = useNavigate();
+  
+  return (
+    <Dropdown className={`ml-auto px-3 ${styles.Absolute}`} drop="left">
+      <Dropdown.Toggle as={ThreeDots} />
+      <Dropdown.Menu>
+        <Dropdown.Item
+          onClick={() => navigate(`/profiles/${id}/edit`)}
+          aria-label="edit-profile"
+        >
+          <i className="fas fa-edit" /> edit profile
+        </Dropdown.Item>
+        <Dropdown.Item
+          onClick={() => navigate(`/profiles/${id}/edit/username`)}
+          aria-label="edit-username"
+        >
+          <i className="far fa-id-card" />
+          change username
+        </Dropdown.Item>
+        <Dropdown.Item
+          onClick={() => navigate(`/profiles/${id}/edit/password`)}
+          aria-label="edit-password"
+        >
+          <i className="fas fa-key" />
+          change password
+        </Dropdown.Item>
+      </Dropdown.Menu>
+    </Dropdown>
+  );
+}
