@@ -9,7 +9,11 @@ import { axiosReq } from "../../api/axiosDefaults";
 import NoResults from "../../assets/no-results.png";
 
 // Bootstrap Components
-import { Button, Col, Container, Image, Row } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
+import Image from "react-bootstrap/Image";
+import Row from "react-bootstrap/Row";
 
 // Context
 import { useCurrentUser } from "../../context/CurrentUserContext";

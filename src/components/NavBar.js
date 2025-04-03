@@ -9,7 +9,9 @@ import axios from "axios";
 import logo from "../assets/logo.png";
 
 // Bootstrap Components
-import { Navbar, Container, Nav } from "react-bootstrap";
+import Navbar from "react-bootstrap/Navbar";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
 
 // Bootstrap Icons
 import {

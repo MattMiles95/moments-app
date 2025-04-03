@@ -5,7 +5,8 @@ import React, { useState } from "react";
 import { axiosRes } from "../../api/axiosDefaults";
 
 // Bootstrap Components
-import { Form, InputGroup } from "react-bootstrap";
+import Form from "react-bootstrap/Form";
+import InputGroup from "react-bootstrap/InputGroup";
 
 // CSS
 import styles from "../../styles/CommentCreateEditForm.module.css";

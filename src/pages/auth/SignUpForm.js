@@ -5,15 +5,13 @@ import React, { useState } from "react";
 import axios from "axios";
 
 // Bootstrap Components
-import {
-  Alert,
-  Button,
-  Col,
-  Container,
-  Form,
-  Image,
-  Row,
-} from "react-bootstrap";
+import Alert from "react-bootstrap/Alert";
+import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
+import Form from "react-bootstrap/Form";
+import Image from "react-bootstrap/Image";
+import Row from "react-bootstrap/Row";
 
 // CSS
 import appStyles from "../../App.module.css";

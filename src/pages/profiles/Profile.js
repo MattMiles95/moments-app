@@ -2,7 +2,7 @@
 import React from "react";
 
 // Bootstrap Components
-import { Button } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
 
 // Context
 import { useCurrentUser } from "../../context/CurrentUserContext";

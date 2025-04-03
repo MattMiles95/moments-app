@@ -8,15 +8,13 @@ import { axiosReq } from "../../api/axiosDefaults";
 import Upload from "../../assets/upload.png";
 
 // Bootstrap Components
-import {
-  Form,
-  Button,
-  Image,
-  Col,
-  Row,
-  Container,
-  Alert,
-} from "react-bootstrap";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Image from "react-bootstrap/Image";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+import Container from "react-bootstrap/Container";
+import Alert from "react-bootstrap/Alert";
 
 // CSS
 import styles from "../../styles/PostCreateEditForm.module.css";
