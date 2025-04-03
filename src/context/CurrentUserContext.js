@@ -8,6 +8,9 @@ import { createContext, useContext, useEffect, useMemo, useState } from "react";
 // React Router
 import { useNavigate } from "react-router-dom";
 
+// Utils
+import { removeTokenTimestamp, shouldRefreshToken } from "../utils/utils";
+
 export const CurrentUserContext = createContext();
 export const SetCurrentUserContext = createContext();
 
@@ -33,19 +36,27 @@ export const CurrentUserProvider = ({ children }) => {
   }, []);
 
   useMemo(() => {
-    // request interceptor to refresh token before making requests
     axiosReq.interceptors.request.use(
       async (config) => {
-        try {
-          await axios.post("/dj-rest-auth/token/refresh/");
-        } catch (err) {
-          // if token refresh fails, log user out and redirect
-          setCurrentUser(null);
-          navigate("/signin");
+        if (shouldRefreshToken()) {
+          try {
+            await axios.post("/dj-rest-auth/token/refresh/");
+          } catch (err) {
+            setCurrentUser((prevCurrentUser) => {
+              if (prevCurrentUser) {
+                navigate("/signin");
+              }
+              return null;
+            });
+            removeTokenTimestamp();
+            return config;
+          }
         }
         return config;
       },
-      (err) => Promise.reject(err)
+      (err) => {
+        return Promise.reject(err);
+      }
     );
 
     // response interceptor to refresh token if response is 401
@@ -56,9 +67,13 @@ export const CurrentUserProvider = ({ children }) => {
           try {
             await axios.post("/dj-rest-auth/token/refresh/");
           } catch (err) {
-            // if refresh fails, log user out
-            setCurrentUser(null);
-            navigate("/signin");
+            setCurrentUser((prevCurrentUser) => {
+              if (prevCurrentUser) {
+                navigate("/signin");
+              }
+              return null;
+            });
+            removeTokenTimestamp();
           }
           return axios(err.config);
         }

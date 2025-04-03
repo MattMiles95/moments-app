@@ -29,6 +29,8 @@ import { UseRedirect } from "../../hooks/UseRedirect";
 // React Router
 import { Link, useNavigate } from "react-router-dom";
 
+// Utils
+import { setTokenTimestamp } from "../../utils/utils";
 
 function SignInForm() {
   const setCurrentUser = useSetCurrentUser();
@@ -48,6 +50,7 @@ function SignInForm() {
     try {
       const { data } = await axios.post("/dj-rest-auth/login/", signInData);
       setCurrentUser(data.user);
+      setTokenTimestamp(data);
       navigate("/");
     } catch (err) {
       setErrors(err.response?.data);
@@ -66,7 +69,7 @@ function SignInForm() {
       <Col className="my-auto p-0 p-md-2" md={6}>
         <Container className={`${appStyles.Content} p-4 `}>
           <h1 className={styles.Header}>sign in</h1>
-          
+
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="username">
               <Form.Label className="d-none">Username</Form.Label>
