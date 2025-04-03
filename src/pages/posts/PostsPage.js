@@ -17,6 +17,9 @@ import Row from "react-bootstrap/Row";
 // Bootstrap Icons
 import Search from "react-bootstrap-icons/dist/icons/search";
 
+// Context
+import { useCurrentUser } from "../../context/CurrentUserContext";
+
 // CSS
 import appStyles from "../../App.module.css";
 import styles from "../../styles/PostsPage.module.css";
@@ -31,6 +34,7 @@ import { fetchMoreData } from "../../utils/utils";
 import { useLocation } from "react-router-dom";
 
 function PostsPage({ message, filter = "" }) {
+  const currentUser = useCurrentUser();
   const [posts, setPosts] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
@@ -54,7 +58,7 @@ function PostsPage({ message, filter = "" }) {
     return () => {
       clearTimeout(timer);
     };
-  }, [filter, query, pathname]);
+  }, [filter, query, pathname, currentUser]);
 
   return (
     <Row className="h-100">
