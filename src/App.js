@@ -22,6 +22,7 @@ import ProfilePage from "./pages/profiles/ProfilePage";
 import UsernameForm from "./pages/profiles/UsernameForm";
 import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 import ProfileEditForm from "./pages/profiles/ProfileEditForm";
+import NotFound from "./components/NotFound";
 
 // React Router
 import { Route, Routes } from "react-router-dom";
@@ -54,7 +55,7 @@ function App() {
           <Route
             path="/liked"
             element={
-              <PostsPage 
+              <PostsPage
                 message="No results found. Try searching for something, or give some posts a like!"
                 filter={`likes__owner__profile=${profile_id}&ordering=-likes__created_at&`}
               />
@@ -67,17 +68,16 @@ function App() {
           <Route path="/posts/:id/edit" element={<PostEditForm />} />
           <Route path="/profiles/:id" element={<ProfilePage />} />
           <Route path="/profiles/:id/edit" element={<ProfileEditForm />} />
-          <Route path="/profiles/:id/edit/username" element={<UsernameForm />} />
-          <Route path="/profiles/:id/edit/password" element={<UserPasswordForm />} />
-          {/* Catch page not found */}
           <Route
-            path="*"
-            element={
-              <h3 className="text-center mt-5">
-                You seem to be lost... click the logo to return home!
-              </h3>
-            }
+            path="/profiles/:id/edit/username"
+            element={<UsernameForm />}
           />
+          <Route
+            path="/profiles/:id/edit/password"
+            element={<UserPasswordForm />}
+          />
+          {/* Catch page not found */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Container>
     </div>
