@@ -37,14 +37,12 @@ function App() {
       <Container className={styles.Main}>
         <Routes>
           <Route
-            exact
             path="/"
             element={
               <PostsPage message="No results found. Try searching for something!" />
             }
           />
           <Route
-            exact
             path="/feed"
             element={
               <PostsPage
@@ -54,7 +52,6 @@ function App() {
             }
           />
           <Route
-            exact
             path="/liked"
             element={
               <PostsPage 
