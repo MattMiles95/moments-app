@@ -1,5 +1,5 @@
 // React
-import React, { use, useState } from "react";
+import React, { useState } from "react";
 
 // API
 import axios from "axios";

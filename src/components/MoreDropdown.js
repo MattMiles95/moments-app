@@ -5,7 +5,7 @@ import React from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 
 // Bootstrap Icons
-import { PencilSquare, ThreeDotsVertical, Trash3 } from "react-bootstrap-icons";
+import { PencilSquare, Trash3 } from "react-bootstrap-icons";
 
 // CSS
 import styles from "../styles/MoreDropdown.module.css";
