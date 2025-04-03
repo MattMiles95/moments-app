@@ -27,7 +27,7 @@ export const CurrentUserProvider = ({ children }) => {
       setCurrentUser(data);
     } catch (err) {
       if (err.response?.status === 401) return; // no user logged in
-      console.error(err);
+      // console.error(err);
     }
   };
 
@@ -85,12 +85,12 @@ export const CurrentUserProvider = ({ children }) => {
   useEffect(() => {
     const interval = setInterval(
       async () => {
-        console.log("Pinging refresh endpoint...");
+        // console.log("Pinging refresh endpoint...");
         try {
           await axios.post("/dj-rest-auth/token/refresh/");
-          console.log("Token refreshed via ping");
+          // console.log("Token refreshed via ping");
         } catch (err) {
-          console.error("Error refreshing token:", err);
+          // console.error("Error refreshing token:", err);
           setCurrentUser(null);
           navigate("/signin");
         }

@@ -14,7 +14,7 @@ export const fetchMoreData = async (resource, setResource) => {
       }, prevResource.results),
     }));
   } catch (err) {
-    console.error("Error fetching more data:", err);
+    // console.error("Error fetching more data:", err);
     if (err.response?.status !== 401) {
       setResource((prevResource) => ({
         ...prevResource,

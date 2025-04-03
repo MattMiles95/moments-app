@@ -43,7 +43,7 @@ function PostsPage({ message, filter = "" }) {
         setPosts(data);
         setHasLoaded(true);
       } catch (err) {
-        console.err("Error fetching posts:", err);
+        // console.err("Error fetching posts:", err);
       }
     };
 
