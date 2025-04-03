@@ -9,10 +9,7 @@ import { axiosReq } from "../../api/axiosDefaults";
 import NoResults from "../../assets/no-results.png";
 
 // Bootstrap Components
-import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
-import Form from "react-bootstrap/Form";
-import Row from "react-bootstrap/Row";
+import { Col, Container, Form, Row } from "react-bootstrap";
 
 // Bootstrap Icons
 import Search from "react-bootstrap-icons/dist/icons/search";

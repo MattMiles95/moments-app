@@ -1,18 +1,21 @@
+// React
 import React, { useEffect, useState } from "react";
 
-import Alert from "react-bootstrap/Alert";
-import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Form from "react-bootstrap/Form";
-
-import { useNavigate, useParams } from "react-router-dom";
+// API
 import { axiosRes } from "../../api/axiosDefaults";
+
+// Bootstrap Components
+import { Alert, Button, Container, Row, Col, Form } from "react-bootstrap";
+
+// Context
 import { useCurrentUser } from "../../context/CurrentUserContext";
 
-import btnStyles from "../../styles/Button.module.css";
+// CSS
 import appStyles from "../../App.module.css";
+import btnStyles from "../../styles/Button.module.css";
+
+// React Router
+import { useNavigate, useParams } from "react-router-dom";
 
 const UserPasswordForm = () => {
   const navigate = useNavigate();

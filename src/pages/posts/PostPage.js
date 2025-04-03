@@ -5,9 +5,7 @@ import React, { useEffect, useState } from "react";
 import { axiosReq } from "../../api/axiosDefaults";
 
 // Bootstrap Components
-import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
+import {Col, Container, Row} from "react-bootstrap";
 
 // Context
 import { useCurrentUser } from "../../context/CurrentUserContext";

@@ -1,21 +1,24 @@
+// React
 import React, { useEffect, useState } from "react";
 
-import Alert from "react-bootstrap/Alert";
-import Button from "react-bootstrap/Button";
-import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
-import Form from "react-bootstrap/Form";
-import Row from "react-bootstrap/Row";
-
-import { useNavigate, useParams } from "react-router-dom";
+// API
 import { axiosRes } from "../../api/axiosDefaults";
+
+// Bootstrap Components
+import { Alert, Button, Col, Container, Form, Row } from "react-bootstrap";
+
+// Context
 import {
   useCurrentUser,
   useSetCurrentUser,
 } from "../../context/CurrentUserContext";
 
-import btnStyles from "../../styles/Button.module.css";
+// CSS
 import appStyles from "../../App.module.css";
+import btnStyles from "../../styles/Button.module.css";
+
+// React Router
+import { useNavigate, useParams } from "react-router-dom";
 
 const UsernameForm = () => {
   const [username, setUsername] = useState("");

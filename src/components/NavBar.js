@@ -12,13 +12,15 @@ import logo from "../assets/logo.png";
 import { Navbar, Container, Nav } from "react-bootstrap";
 
 // Bootstrap Icons
-import { BoxArrowInLeft } from "react-bootstrap-icons";
-import { BoxArrowInRight } from "react-bootstrap-icons";
-import { Heart } from "react-bootstrap-icons";
-import { House } from "react-bootstrap-icons";
-import { List } from "react-bootstrap-icons";
-import { PersonPlusFill } from "react-bootstrap-icons";
-import { PlusSquare } from "react-bootstrap-icons";
+import {
+  BoxArrowInLeft,
+  BoxArrowInRight,
+  Heart,
+  House,
+  List,
+  PersonPlusFill,
+  PlusSquare,
+} from "react-bootstrap-icons";
 
 // Context
 import {

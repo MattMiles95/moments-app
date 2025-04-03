@@ -1,13 +1,11 @@
-// React 
+// React
 import React from "react";
 
 // API
 import { axiosRes } from "../../api/axiosDefaults";
 
 // Bootstrap Components
-import Card from "react-bootstrap/Card";
-import OverlayTrigger from "react-bootstrap/OverlayTrigger";
-import Tooltip from "react-bootstrap/Tooltip";
+import { Card, OverlayTrigger, Tooltip } from "react-bootstrap";
 
 // Bootstrap Icons
 import { Chat, Heart, HeartFill } from "react-bootstrap-icons";
